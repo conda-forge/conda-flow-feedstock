@@ -10,7 +10,7 @@ source:
   sha256: 6ead41fa88fb299440c09ce1e847b0f0c246f7c8377ab3553e2a1435d4626d86
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
   entry_points:
@@ -19,12 +19,14 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools_scm >=3.4
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
+   requires:
+      - python {{ python_min }}
    imports:
      - conda_flow
 
